@@ -53,6 +53,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "terminator", NULL };
+static const char *quit_x11_cmd[]  = { "/bin/bash -c", "killall xinit", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -88,7 +89,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_r,      quit,           {0} },	/* quit dwm, which will respawn due to loop in xinitrc */
+	{ MODKEY|ShiftMask,             XK_q,      spawn,           {.v = quit_x11_cmd} },   /* quit X11, preventing dwm respawn */
 };
 
 /* button definitions */
