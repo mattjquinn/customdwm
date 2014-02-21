@@ -1,0 +1,5 @@
+- Split dwm launch code/loop into separate script; on quit, kill that process instead of xinit.
+  - This goes hand in hand with having dzen/conky be restarted when dwm is respawned using Ctrl+R; currently
+    dwm respawns on top of dzen/conky, so we need a way to kill those processes and bring them back after
+    we respawn dwm.
+(Both these TODOs above involve creating new scripts from the contents of xinitrc and linking them in some manner.)
